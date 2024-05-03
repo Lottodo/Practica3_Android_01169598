@@ -2,7 +2,6 @@ package com.example.practica3
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -86,9 +85,14 @@ fun CardViewGUI(show: Show) {
 
         ) {
             IconButton(onClick = {
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(show.officialSite)
-                context.startActivity(intent)
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "${show.name} official website: ${show.officialSite}")
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                context.startActivity(shareIntent)
             }) {
                 Icon(
                     imageVector = Icons.Default.Share,
