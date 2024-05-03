@@ -1,10 +1,9 @@
 package com.example.practica3
 
 import android.content.Context
-import android.util.Log
+//import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.IOException
 import java.io.InputStream
 
 class ShowsDatabase(context : Context) {
@@ -15,6 +14,7 @@ class ShowsDatabase(context : Context) {
     val showListType = object: TypeToken<List<Show>>() {}.type
     val shows: List<Show> = Gson().fromJson(jsonFileString, showListType)
 
+    /*
     fun printShows() {
         for (q in shows) {
             Log.d("TESTEO", "Titulo: ${q.name}")
@@ -22,5 +22,6 @@ class ShowsDatabase(context : Context) {
             Log.d("TESTEO", "ID: ${q.id} \n")
         }
     }
+    */
 
 }
